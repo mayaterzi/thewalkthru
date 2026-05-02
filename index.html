@@ -224,39 +224,35 @@
        Background: #FFFFFF  |  Text: #340E0A
     ───────────────────────────────────── */
     .marquee-section {
-      background: var(--white);
-      border-top: 1px solid rgba(52, 14, 10, 0.12);
-      border-bottom: 1px solid rgba(52, 14, 10, 0.12);
-      overflow: hidden;
-      padding: 1.1rem 0;
-    }
+  background: transparent;   /* removes white banner */
+  padding: 5rem 0;         /* makes it feel more “present” */
+  overflow: hidden;
+  border: none;              /* removes box feel */
+}
 
     .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 20s linear infinite;
-    }
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite; /* slower = more premium */
+}
 
     .marquee-track:hover { animation-play-state: paused; }
 
-    .marquee-item {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--dark);
-      white-space: nowrap;
-      padding: 0 1.5rem;
-    }
+   .marquee-item {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14px;           /* bigger = more presence */
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85); /* softer white, not harsh */
+  white-space: nowrap;
+  padding: 0 2.5rem;
+}
 
     .marquee-sep {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 11px;
-      color: var(--dark);
-      opacity: 0.30;
-      white-space: nowrap;
-    }
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 14px;
+}
 
     @keyframes marquee {
       from { transform: translateX(0); }
