@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walk Thru</title>
+  <meta name="description" content="A biweekly cultural blog at the intersection of fashion and sport." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --white: #FFFFFF;
+      --dark:  #340E0A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Noto Serif', serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─────────────────────────────────────
+       HEADER / NAV
+    ───────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    /* Shown when logo image hasn't been added yet */
+    .nav-logo-fallback {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.60);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    /* Mobile hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--white);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.75rem 2.5rem;
+      background: var(--dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.60);
+    }
+
+    .mobile-menu a:hover { color: var(--white); }
+
+    /* ─────────────────────────────────────
+       HERO — full viewport with background image
+    ───────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding-top: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      /*
+        ══ BACKGROUND IMAGE ══════════════════
+        When you have your hero image ready:
+          1. Upload the image file to the same
+             GitHub folder as index.html
+          2. Replace 'YOUR-HERO-IMAGE.jpg' with
+             your actual filename, e.g. 'hero.jpg'
+        ══════════════════════════════════════
+      */
+      background-image: url('YOUR-HERO-IMAGE.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: var(--dark); /* fallback until image loads */
+    }
+
+    /* Dark overlay so text stays readable over any photo */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(52, 14, 10, 0.55);
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 960px;
+      width: 100%;
+    }
+
+    .hero-heading {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(36px, 7vw, 90px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero-subheading {
+      font-family: 'Noto Serif', serif;
+      font-style: italic;
+      font-size: clamp(16px, 2.5vw, 24px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.4;
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+
+    /* ─────────────────────────────────────
+       BLURB SECTION
+    ───────────────────────────────────── */
+    .blurb-section {
+      background: var(--dark);
+      padding: 5rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .blurb-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .blurb-inner p {
+      font-family: 'Noto Serif', serif;
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--white);
+      line-height: 1.9;
+    }
+
+    /* ─────────────────────────────────────
+       MARQUEE / SLIDING TICKER
+       Background: #FFFFFF  |  Text: #340E0A
+    ───────────────────────────────────── */
+    .marquee-section {
+      background: var(--white);
+      border-top: 1px solid rgba(52, 14, 10, 0.12);
+      border-bottom: 1px solid rgba(52, 14, 10, 0.12);
+      overflow: hidden;
+      padding: 1.1rem 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    .marquee-item {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dark);
+      white-space: nowrap;
+      padding: 0 1.5rem;
+    }
+
+    .marquee-sep {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      color: var(--dark);
+      opacity: 0.30;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─────────────────────────────────────
+       QUOTE SECTION
+    ───────────────────────────────────── */
+    .quote-section {
+      background: var(--dark);
+      padding: 6rem 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .quote-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-rule {
+      width: 36px;
+      height: 1px;
+      background: var(--white);
+      opacity: 0.35;
+      margin: 0 auto 2.5rem;
+    }
+
+    .quote-text {
+      font-family: 'Noto Serif', serif;
+      font-style: italic;
+      font-size: clamp(20px, 3vw, 32px);
+      color: var(--white);
+      line-height: 1.55;
+      margin-bottom: 2rem;
+    }
+
+    .quote-attr {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.50);
+    }
+
+    /* ─────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-top {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-col-label {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-brand-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-brand-tag {
+      font-family: 'Noto Serif', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.50);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Social icons */
+    .social-row {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-link {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.50);
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .social-link:hover {
+      border-color: var(--white);
+      color: var(--white);
+    }
+
+    .social-link svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* Nav links */
+    .footer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .footer-nav-list a {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.50);
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav-list a:hover { color: var(--white); }
+
+    /* Email signup */
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .signup-input {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--white);
+      font-family: 'Noto Serif', serif;
+      font-size: 14px;
+      padding: 0.8rem 1rem;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .signup-input::placeholder { color: rgba(255, 255, 255, 0.30); }
+    .signup-input:focus { border-color: var(--white); }
+
+    .signup-btn {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: var(--white);
+      color: var(--dark);
+      border: none;
+      padding: 0.85rem 1.5rem;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s ease;
+    }
+
+    .signup-btn:hover { opacity: 0.85; }
+
+    .signup-note {
+      font-family: 'Noto Serif', serif;
+      font-style: italic;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.30);
+    }
+
+    /* Bottom bar */
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .footer-bottom-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom-inner p {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* ─────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links  { display: none; }
+      .nav-toggle { display: flex; }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 3rem 1.5rem 2rem;
+      }
+
+      .footer-bottom-inner {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 1.25rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0 1.25rem; }
+      .blurb-section,
+      .quote-section { padding: 3.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       HEADER
+  ══════════════════════════════════ -->
+  <header>
+    <nav>
+
+      <!--
+        ══ LOGO PLACEHOLDER ══════════════════
+        When your logo image is ready:
+          1. Upload it to the same GitHub folder
+             as index.html (e.g. 'logo.png')
+          2. Replace 'YOUR-LOGO.png' below with
+             your actual filename
+          3. The fallback text will hide itself
+             automatically once the image loads
+        ══════════════════════════════════════
+      -->
+      <a href="/" class="nav-logo">
+        <img
+          src="YOUR-LOGO.png"
+          alt="The Walk Thru"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        />
+        <span class="nav-logo-fallback" style="display:none;">The Walk Thru</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="archive.html">Archive</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="blog.html">Blog</a>
+      <a href="archive.html">Archive</a>
+      <a href="about.html">About</a>
+    </div>
+  </header>
+
+
+  <!-- ══════════════════════════════════
+       HERO
+  ══════════════════════════════════ -->
+  <!--
+    ══ HERO IMAGE NOTE ═══════════════════
+    The background image is set in the CSS
+    .hero rule above. Search for:
+      background-image: url('YOUR-HERO-IMAGE.jpg');
+    and swap in your filename when ready.
+    ══════════════════════════════════════
+  -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-heading">The Walk Thru</h1>
+      <p class="hero-subheading">Where fashion strides forward;</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       BLURB
+  ══════════════════════════════════ -->
+  <section class="blurb-section">
+    <div class="blurb-inner">
+      <p>
+        The Walk Thru is a biweekly cultural blog at the intersection of fashion and sport.
+        More than style coverage, it's a reflective stride through the past and present —
+        unpacking how what we wear speaks to who we are, where we've been, and where we're headed.
+        Each issue honors legacy, dissects influence, and celebrates the power of style as
+        self-expression and the forces that shape identity.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       MARQUEE
+  ══════════════════════════════════ -->
+  <section class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- Set 1 -->
+      <span class="marquee-item">Authentic</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Curated</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Bold</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Authentic</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Curated</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Bold</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Authentic</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Curated</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Bold</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Authentic</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Curated</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Bold</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <!-- Set 2 — exact duplicate for seamless loop -->
+      <span class="marquee-item">Authentic</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Curated</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Bold</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Authentic</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Curated</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Bold</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Authentic</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Curated</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Bold</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Authentic</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Curated</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+      <span class="marquee-item">Bold</span>
+      <span class="marquee-sep">&nbsp;•&nbsp;</span>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       QUOTE
+  ══════════════════════════════════ -->
+  <section class="quote-section">
+    <div class="quote-inner">
+      <div class="quote-rule"></div>
+      <p class="quote-text">
+        "What you wear reflects how you carry yourself.<br />
+        It's part of your story."
+      </p>
+      <p class="quote-attr">— Russell Westbrook</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       FOOTER
+  ══════════════════════════════════ -->
+  <footer>
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div>
+        <p class="footer-col-label">The Walk Thru</p>
+        <p class="footer-brand-name">The Walk Thru</p>
+        <p class="footer-brand-tag">Where fashion strides forward.</p>
+        <div class="social-row">
+          <!-- Replace href="#" with your real social URLs -->
+          <a class="social-link" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a class="social-link" href="#" aria-label="X" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a class="social-link" href="#" aria-label="TikTok" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.02a8.16 8.16 0 004.77 1.52V7.1a4.85 4.85 0 01-1-.41z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <p class="footer-col-label">Navigate</p>
+        <ul class="footer-nav-list">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:thewalkthru.blog@gmail.com">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Email signup -->
+      <div>
+        <p class="footer-col-label">Walk With Us</p>
+        <div class="signup-form">
+          <input
+            class="signup-input"
+            type="email"
+            placeholder="Email address"
+            aria-label="Email address"
+          />
+          <button class="signup-btn" type="button">Sign Up</button>
+          <p class="signup-note">We value and respect your privacy.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>© 2025 The Walk Thru. All rights reserved.</p>
+        <p>thewalkthru.blog@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
