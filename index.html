@@ -156,8 +156,7 @@
              your actual filename, e.g. 'hero.jpg'
         ══════════════════════════════════════
       */
-    background: linear-gradient(rgba(52,14,10,.6), rgba(52,14,10,.6)),
-            url('./hero.png') center/cover no-repeat;
+   background: url('./hero.png') center 30% / cover no-repeat;
       background-color: var(--dark); /* fallback until image loads */
     }
 
@@ -177,7 +176,7 @@
   justify-content: flex-start;
 
   /* push content up into upper third */
-  margin-top: 6vh;
+  margin-top: 20vh;
 }
 
     .hero-heading {
@@ -530,14 +529,14 @@
              automatically once the image loads
         ══════════════════════════════════════
       -->
-      <a href="/" class="nav-logo">
-        <img
-          src="YOUR-LOGO.png"
-          alt="The Walk Thru"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        />
-        <span class="nav-logo-fallback" style="display:none;">The Walk Thru</span>
-      </a>
+      <a href="./index.html" class="nav-logo">
+  <img src="./logo.png" alt="The Walk Thru" />
+</a>
+      .nav-logo img {
+  height: 32px;   /* adjust depending on your logo */
+  width: auto;
+  display: block;
+}
 
       <ul class="nav-links">
         <li><a href="blog.html">Blog</a></li>
