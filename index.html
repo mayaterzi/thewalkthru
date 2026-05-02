@@ -41,22 +41,16 @@
        HEADER / NAV
     ───────────────────────────────────── */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--dark);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    }
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
 
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  background: rgba(52, 14, 10, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
 
     .nav-logo img {
       height: 36px;
