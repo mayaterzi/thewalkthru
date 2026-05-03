@@ -41,15 +41,16 @@ header {
 nav {
   max-width: 1200px;
   margin: 0 auto;
-  height: 92px;
+  height: 110px; /* taller to accommodate bigger logo */
   padding: 0 2.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* LOGO — doubled from 60px to 120px */
 .nav-logo img {
-  height: 60px;
+  height: 120px;
   width: auto;
   display: block;
 }
@@ -60,9 +61,10 @@ nav {
   list-style: none;
 }
 
+/* NAV LINKS — larger font size */
 .nav-links a {
   font-family: 'Unbounded', sans-serif;
-  font-size: 10px;
+  font-size: 13px; /* was 10px */
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--white);
@@ -73,22 +75,22 @@ nav {
 .nav-links a:hover { opacity: 1; }
 
 /* ───────── HERO ───────── */
-/* TALLER — 100vh, text anchored near top */
+/* Extra tall — 130vh so the image pulls further down the page */
 .hero {
-  min-height: 100vh;
+  min-height: 130vh;
   display: flex;
-  align-items: flex-start;          /* push content to top */
+  align-items: flex-start;
   justify-content: center;
   background: url('./hero.png') center 10% / cover no-repeat;
-  background-color: var(--dark);    /* fallback */
-  padding-top: 92px;                /* clear the fixed nav */
+  background-color: var(--dark);
+  padding-top: 110px; /* match nav height */
 }
 
 .hero-inner {
   max-width: 1200px;
   width: 100%;
-  padding: 5rem 2.5rem 0;           /* generous top breathing room */
-  text-align: center;
+  padding: 5rem 2.5rem 0;
+  text-align: left; /* left-align so subheading can sit right */
 }
 
 .hero-heading {
@@ -98,29 +100,32 @@ nav {
   text-transform: uppercase;
   color: var(--white);
   line-height: 1.0;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  text-align: center; /* heading stays centered */
 }
 
+/* Subheading — right-aligned, slightly larger */
 .hero-subheading {
   font-family: 'Noto Serif', serif;
   font-style: italic;
-  font-size: clamp(16px, 2vw, 22px);
+  font-size: clamp(18px, 2.4vw, 26px); /* was 16–22px */
   color: var(--white);
   opacity: 0.9;
+  text-align: center; /* aligned to the right */
 }
 
 /* ───────── BLURB ───────── */
+/* Shorter section — wider text container, less vertical padding */
 .blurb-section {
-  padding: 6rem 2rem;
+  padding: 3.5rem 2rem; /* was 6rem — shorter */
 }
 
 .blurb-inner {
-  max-width: 860px;
+  max-width: 1100px; /* was 860px — much wider so text wraps in fewer lines */
   margin: 0 auto;
-  text-align: left align;
+  text-align: center;
 }
 
-/* LARGER blurb font */
 .blurb-inner p {
   font-family: 'Noto Serif', serif;
   font-size: clamp(18px, 2.2vw, 24px);
@@ -141,15 +146,15 @@ nav {
   display: flex;
   align-items: center;
   width: max-content;
-  animation: scroll 48s linear infinite;
+  /* REVERSED direction — to: translateX(0), from: translateX(-50%) */
+  animation: scroll-reverse 28s linear infinite;
 }
 
-/* TIGHTENED letter-spacing (was 1em — way too wide) */
 .marquee-item {
   font-family: 'Unbounded', sans-serif;
   font-weight: 900;
   font-size: clamp(28px, 4vw, 48px);
-  letter-spacing: 0.08em;           /* was 1em — fixed */
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white);
   padding: 0 2.5rem;
@@ -164,13 +169,13 @@ nav {
   flex-shrink: 0;
 }
 
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+/* Reversed scroll — moves right to left becomes left to right */
+@keyframes scroll-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
 /* ───────── QUOTE ───────── */
-/* More impactful — larger type, ruled borders, generous padding */
 .quote-section {
   padding: 8rem 2rem;
   text-align: center;
@@ -221,36 +226,35 @@ footer {
   gap: 3rem;
 }
 
-/* Column labels */
 .footer-col-label {
   font-family: 'Unbounded', sans-serif;
-  font-size: 8px;
-  letter-spacing: 0.24em;
+  font-size: 10px; /* was 8px — larger */
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.38);
+  color: rgba(255,255,255,0.50); /* slightly more visible */
   margin-bottom: 1.25rem;
 }
 
 /* Brand col */
 .footer-brand-name {
   font-family: 'Unbounded', sans-serif;
-  font-size: 13px;
+  font-size: 16px; /* was 13px */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--white);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .footer-brand-tag {
   font-family: 'Noto Serif', serif;
   font-style: italic;
-  font-size: 13px;
-  color: rgba(255,255,255,0.50);
+  font-size: 15px; /* was 13px */
+  color: rgba(255,255,255,0.55);
   margin-bottom: 1.75rem;
 }
 
-/* Social icons — FIXED with real SVG paths */
+/* Social icons */
 .social-row {
   display: flex;
   gap: 0.75rem;
@@ -289,16 +293,16 @@ footer {
 
 .footer-nav-list a {
   font-family: 'Unbounded', sans-serif;
-  font-size: 9px;
+  font-size: 12px; /* was 9px — larger */
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.60);
   transition: color 0.2s ease;
 }
 
 .footer-nav-list a:hover { color: var(--white); }
 
-/* Newsletter / Contact col */
+/* Newsletter col */
 .signup-form {
   display: flex;
   flex-direction: column;
@@ -310,7 +314,7 @@ footer {
   border: 1px solid rgba(255,255,255,0.25);
   color: var(--white);
   font-family: 'Noto Serif', serif;
-  font-size: 14px;
+  font-size: 15px; /* was 14px */
   padding: 0.8rem 1rem;
   outline: none;
   width: 100%;
@@ -320,7 +324,7 @@ footer {
 }
 
 .signup-input::placeholder {
-  color: rgba(255,255,255,0.30);
+  color: rgba(255,255,255,0.35);
 }
 
 .signup-input:focus {
@@ -329,14 +333,14 @@ footer {
 
 .signup-btn {
   font-family: 'Unbounded', sans-serif;
-  font-size: 9px;
+  font-size: 10px; /* was 9px */
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   background: var(--white);
   color: var(--dark);
   border: none;
-  padding: 0.85rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   cursor: pointer;
   width: 100%;
   transition: opacity 0.2s ease;
@@ -347,8 +351,8 @@ footer {
 .signup-note {
   font-family: 'Noto Serif', serif;
   font-style: italic;
-  font-size: 11px;
-  color: rgba(255,255,255,0.30);
+  font-size: 12px; /* was 11px */
+  color: rgba(255,255,255,0.35);
 }
 
 /* Bottom bar */
@@ -368,14 +372,20 @@ footer {
 
 .footer-bottom-inner p {
   font-family: 'Unbounded', sans-serif;
-  font-size: 8px;
+  font-size: 9px; /* was 8px */
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.30);
 }
 
 /* ───────── RESPONSIVE ───────── */
 @media (max-width: 768px) {
+  .nav-logo img { height: 70px; }
+
+  nav { height: 90px; }
+
+  .hero { padding-top: 90px; }
+
   .footer-top {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -483,8 +493,7 @@ footer {
   <div class="quote-inner">
     <div class="quote-rule"></div>
     <p class="quote-text">
-      "What you wear reflects how you carry yourself.<br>
-      It's part of your story."
+      "What you wear reflects how you carry yourself. It's part of your story."
     </p>
     <p class="quote-attr">— Russell Westbrook</p>
   </div>
@@ -502,7 +511,6 @@ footer {
       <p class="footer-brand-tag">Where fashion strides forward;</p>
 
       <div class="social-row">
-
         <!-- Instagram -->
         <a class="social-link" href="https://instagram.com/walkthru.blog" aria-label="Instagram" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24">
@@ -523,22 +531,21 @@ footer {
             <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.02a8.16 8.16 0 004.77 1.52V7.1a4.85 4.85 0 01-1-.41z"/>
           </svg>
         </a>
-
       </div>
     </div>
 
-    <!-- Nav col -->
+    <!-- Nav col — contact removed -->
     <div>
       <ul class="footer-nav-list">
         <li><a href="blog.html">Blog</a></li>
         <li><a href="archive.html">Archive</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="mailto:thewalkthru.blog@gmail.com">Contact</a></li>
       </ul>
     </div>
 
     <!-- Newsletter col -->
     <div>
+      <p class="footer-col-label">Walk With Us</p>
       <div class="signup-form">
         <input
           class="signup-input"
